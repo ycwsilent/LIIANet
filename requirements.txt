@@ -1,0 +1,7 @@
+
+einops==0.6.1
+huggingface-hub==0.30.2
+timm==0.4.12
+fvcore==0.1.5.post20221221
+lpips==0.1.4
+
