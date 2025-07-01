@@ -43,14 +43,13 @@ The LOL-v1 dataset is listed from top to bottom; LOL-v2 real dataset; Images in 
 
 ## 1. Create Environment
 
-- Make Conda Environment
+- Make Conda Environment and Install Dependencies
 
 ```shell
-conda create -n LIIA python=3.10 -y
-conda activate LIIA
-conda install torch 2.1.2+cu121 -c pytorch
+conda create -n LIIANet-LLIE python=3.10 -y
+conda activate LIIANet-LLIE
+conda install pytorch==2.1.2 torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 pip install -r requirements.txt
-
 ```
 
 - Install mamba and vssm
@@ -60,8 +59,8 @@ cd causal-conv1d
 pip install . --no-cache-dir --verbose
 cd ./../mamba
 pip install . --no-cache-dir --verbose
-cd VMamba
-cd kernels/selective_scan && pip install .
+cd ./../selective_scan
+pip install .
 ```
 
 ## 2. Prepare Dataset
@@ -76,23 +75,23 @@ LOL-v2 [Baidu Disk](https://pan.baidu.com/s/1X4HykuVL_1WyB3LWJJhBQg?pwd=cyh2) (c
 <summary><b> Then organize these datasets as follows: </b></summary>
 
 ```
-    |--data   
-    |    |--LOLv1
-    |    |    |--Train
-    |    |    |    |--input
+    |--datasets   
+    |    |--LOLdataset
+    |    |    |--our485
+    |    |    |    |--low
     |    |    |    |    |--100.png
     |    |    |    |    |--101.png
     |    |    |    |     ...
-    |    |    |    |--target
+    |    |    |    |--high
     |    |    |    |    |--100.png
     |    |    |    |    |--101.png
     |    |    |    |     ...
-    |    |    |--Test
-    |    |    |    |--input
+    |    |    |--eval15
+    |    |    |    |--low
     |    |    |    |    |--111.png
     |    |    |    |    |--146.png
     |    |    |    |     ...
-    |    |    |    |--target
+    |    |    |    |--high
     |    |    |    |    |--111.png
     |    |    |    |    |--146.png
     |    |    |    |     ...
@@ -154,8 +153,8 @@ Obtain our weights from the link below and place them in the pth folder
 
 
 ```shell
-# activate the environment
-conda activate LIIA-Net
+# Test our parameters and floating-point computational complexity
+python net_test.py
 
 # LOL-v1
 python eval.py --lol --test --weight_path ./pth/v1.pth

@@ -1,0 +1,7 @@
+# ninja log v5
+0	7027	1751424041085839284	/home/usertwo/ycw/projects/aTemp/LIIANet/selective_scan/build/temp.linux-x86_64-cpython-310/csrc/selective_scan/cusoflex/selective_scan_core_fwd.o	bdbb28a5a86502b1
+1	9842	1751424043901796224	/home/usertwo/ycw/projects/aTemp/LIIANet/selective_scan/build/temp.linux-x86_64-cpython-310/csrc/selective_scan/cusoflex/selective_scan_oflex.o	293e8f1c614a0eb9
+0	23376	1751424057429593341	/home/usertwo/ycw/projects/aTemp/LIIANet/selective_scan/build/temp.linux-x86_64-cpython-310/csrc/selective_scan/cusoflex/selective_scan_core_bwd.o	28f190ff8a528a26
+2	4752	1751424062341521278	/home/usertwo/ycw/projects/aTemp/LIIANet/selective_scan/build/temp.linux-x86_64-cpython-310/csrc/selective_scan/cus/selective_scan_core_fwd.o	9cfa3f67ee315a60
+2	9810	1751424067397447985	/home/usertwo/ycw/projects/aTemp/LIIANet/selective_scan/build/temp.linux-x86_64-cpython-310/csrc/selective_scan/cus/selective_scan.o	fcbdd86b1227c77c
+2	14622	1751424072205379104	/home/usertwo/ycw/projects/aTemp/LIIANet/selective_scan/build/temp.linux-x86_64-cpython-310/csrc/selective_scan/cus/selective_scan_core_bwd.o	4d46c61667df2946

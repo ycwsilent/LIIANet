@@ -1,0 +1,34 @@
+ninja_required_version = 1.3
+cxx = c++
+nvcc = /usr/local/cuda-12.1/bin/nvcc
+
+cflags = -pthread -B /home/usertwo/anaconda3/envs/LIIANet-LLIE/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /home/usertwo/anaconda3/envs/LIIANet-LLIE/include -fPIC -O2 -isystem /home/usertwo/anaconda3/envs/LIIANet-LLIE/include -fPIC -I/home/usertwo/ycw/projects/aTemp/LIIANet/selective_scan/csrc/selective_scan -I/home/usertwo/anaconda3/envs/LIIANet-LLIE/lib/python3.10/site-packages/torch/include -I/home/usertwo/anaconda3/envs/LIIANet-LLIE/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/home/usertwo/anaconda3/envs/LIIANet-LLIE/lib/python3.10/site-packages/torch/include/TH -I/home/usertwo/anaconda3/envs/LIIANet-LLIE/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda-12.1/include -I/home/usertwo/anaconda3/envs/LIIANet-LLIE/include/python3.10 -c
+post_cflags = -O3 -std=c++17 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=selective_scan_cuda_core -D_GLIBCXX_USE_CXX11_ABI=0
+cuda_cflags = -I/home/usertwo/ycw/projects/aTemp/LIIANet/selective_scan/csrc/selective_scan -I/home/usertwo/anaconda3/envs/LIIANet-LLIE/lib/python3.10/site-packages/torch/include -I/home/usertwo/anaconda3/envs/LIIANet-LLIE/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/home/usertwo/anaconda3/envs/LIIANet-LLIE/lib/python3.10/site-packages/torch/include/TH -I/home/usertwo/anaconda3/envs/LIIANet-LLIE/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda-12.1/include -I/home/usertwo/anaconda3/envs/LIIANet-LLIE/include/python3.10 -c
+cuda_post_cflags = -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -O3 -std=c++17 -U__CUDA_NO_HALF_OPERATORS__ -U__CUDA_NO_HALF_CONVERSIONS__ -U__CUDA_NO_BFLOAT16_OPERATORS__ -U__CUDA_NO_BFLOAT16_CONVERSIONS__ -U__CUDA_NO_BFLOAT162_OPERATORS__ -U__CUDA_NO_BFLOAT162_CONVERSIONS__ --expt-relaxed-constexpr --expt-extended-lambda --use_fast_math --ptxas-options=-v -lineinfo -arch=sm_89 --threads 4 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=selective_scan_cuda_core -D_GLIBCXX_USE_CXX11_ABI=0
+cuda_dlink_post_cflags = 
+ldflags = 
+
+rule compile
+  command = $cxx -MMD -MF $out.d $cflags -c $in -o $out $post_cflags
+  depfile = $out.d
+  deps = gcc
+
+rule cuda_compile
+  depfile = $out.d
+  deps = gcc
+  command = $nvcc  $cuda_cflags -c $in -o $out $cuda_post_cflags
+
+
+
+
+
+build /home/usertwo/ycw/projects/aTemp/LIIANet/selective_scan/build/temp.linux-x86_64-cpython-310/csrc/selective_scan/cus/selective_scan.o: compile /home/usertwo/ycw/projects/aTemp/LIIANet/selective_scan/csrc/selective_scan/cus/selective_scan.cpp
+build /home/usertwo/ycw/projects/aTemp/LIIANet/selective_scan/build/temp.linux-x86_64-cpython-310/csrc/selective_scan/cus/selective_scan_core_bwd.o: cuda_compile /home/usertwo/ycw/projects/aTemp/LIIANet/selective_scan/csrc/selective_scan/cus/selective_scan_core_bwd.cu
+build /home/usertwo/ycw/projects/aTemp/LIIANet/selective_scan/build/temp.linux-x86_64-cpython-310/csrc/selective_scan/cus/selective_scan_core_fwd.o: cuda_compile /home/usertwo/ycw/projects/aTemp/LIIANet/selective_scan/csrc/selective_scan/cus/selective_scan_core_fwd.cu
+
+
+
+
+
+
