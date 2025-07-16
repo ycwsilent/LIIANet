@@ -1,7 +1,6 @@
 
 # LIIANet
-LIIA-Net: A Lightweight Illumination Iterative Adjustment Network for Low-Light Image Enhancement
-
+""
 ---------------------
 
 - Our code will be sorted and uploaded
