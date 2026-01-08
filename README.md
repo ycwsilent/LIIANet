@@ -55,9 +55,9 @@ pip install -r requirements.txt
 
 ```shell
 cd causal-conv1d
-pip install . --no-cache-dir --verbose
+pip install . --no-cache-dir --verbose (pip install . --no-cache-dir --no-build-isolation)
 cd ./../mamba
-pip install . --no-cache-dir --verbose
+pip install . --no-cache-dir --verbose (pip install . --no-cache-dir --no-build-isolation)
 cd ./../selective_scan
 pip install .
 ```
